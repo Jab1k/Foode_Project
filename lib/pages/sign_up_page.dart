@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'sign_up_page.dart';
-
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool value = false;
@@ -31,12 +29,15 @@ class _SignInPageState extends State<SignInPage> {
                 width: 199.2,
               ),
             ),
-            Text(
-              'Sign in to your account',
-              style: GoogleFonts.sourceSansPro(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black),
+            Padding(
+              padding: const EdgeInsets.only(top: 62),
+              child: Text(
+                'Sign up for free',
+                style: GoogleFonts.sourceSansPro(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 48, top: 32),
@@ -184,7 +185,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   child: Center(
                     child: Text(
-                      'Sign in',
+                      'Sign up',
                       style: GoogleFonts.sourceSansPro(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -192,16 +193,6 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Text(
-                'Forgot the password?',
-                style: GoogleFonts.sourceSansPro(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xffF43F5E)),
               ),
             ),
             Padding(
@@ -283,7 +274,7 @@ class _SignInPageState extends State<SignInPage> {
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text(
-                  'Don’t have an account?',
+                  'Already have an account?',
                   style: GoogleFonts.sourceSansPro(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -291,11 +282,10 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 TextButton(
                   onPressed: (() {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: ((context) => SignUpPage())));
+                    Navigator.pop(context);
                   }),
                   child: Text(
-                    'Sign up',
+                    'Sign in',
                     style: GoogleFonts.sourceSansPro(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

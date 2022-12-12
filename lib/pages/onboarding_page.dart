@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'sign_in_page.dart';
+
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
 
@@ -45,17 +47,21 @@ class OnBoardingPage extends StatelessWidget {
                         const EdgeInsets.only(bottom: 48, left: 24, right: 24),
                     child: InkWell(
                       onTap: () {
-                        
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: ((context) => SignInPage())));
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 14, horizontal: 169.5),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 14, horizontal: 169.5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(32)),
                             gradient: LinearGradient(
                                 begin: Alignment.bottomRight,
                                 end: Alignment.topLeft,
-                                colors: [Color(0xffFF1843), Color(0xffFF7E95)])),
+                                colors: [
+                                  Color(0xffFF1843),
+                                  Color(0xffFF7E95)
+                                ])),
                         child: Center(
                           child: Text(
                             'Next',
