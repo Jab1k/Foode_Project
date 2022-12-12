@@ -46,7 +46,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
                   Padding(
                     padding: const EdgeInsets.only(top: 50),
                     child: LoadingAnimationWidget.inkDrop(
-                        color: Color.fromARGB(255, 214, 44, 72), size: 35),
+                        color: Color(0XFFF43F5E), size: 35),
                   )
                 ],
               ),
