@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'onboarding_page.dart';
 
 class SplashScreen1 extends StatefulWidget {
@@ -40,8 +40,8 @@ class _SplashScreen1State extends State<SplashScreen1> {
                 children: [
                   Image.asset(
                     'assets/image/LogoMainPage.png',
-                    height: 334,
-                    width: 346.52,
+                    height: 334.h,
+                    width: 346.52.w,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 50),

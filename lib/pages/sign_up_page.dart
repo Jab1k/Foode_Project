@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'fill_bio.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -13,6 +15,8 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController password = TextEditingController();
   bool value = false;
   bool visibilityOfpasswor = false;
+  bool isEmailEmpty = false;
+  bool isPasswordEmpty = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +67,10 @@ class _SignUpPageState extends State<SignUpPage> {
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 24, right: 24),
               child: TextFormField(
+                onChanged: (value) {
+                  bool isEmailEmpty = false;
+                  setState(() {});
+                },
                 controller: email,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
@@ -84,6 +92,35 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
             ),
+            isEmailEmpty
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 24, top: 8, right: 24),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4),
+                            child: Icon(
+                              Icons.error,
+                              color: Color(0xff394452),
+                            ),
+                          ),
+                          Text(
+                            'Please fill the Email',
+                            style: GoogleFonts.sourceSansPro(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff394452)),
+                          ),
+                        ],
+                      ),
+                      padding: EdgeInsets.only(top: 6, bottom: 6, left: 36),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          color: Color(0xffEBEEF2)),
+                    ),
+                  )
+                : SizedBox.shrink(),
             Padding(
               padding: const EdgeInsets.only(left: 48, top: 20),
               child: Row(
@@ -108,8 +145,13 @@ class _SignUpPageState extends State<SignUpPage> {
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 24, right: 24),
               child: TextFormField(
+                onChanged: (value) {
+                  isPasswordEmpty = false;
+                  setState(() {});
+                },
                 controller: password,
                 obscureText: visibilityOfpasswor,
+                obscuringCharacter: '*',
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(
@@ -138,6 +180,35 @@ class _SignUpPageState extends State<SignUpPage> {
                             : Icons.visibility_off))),
               ),
             ),
+            isEmailEmpty
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 24, top: 8, right: 24),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4),
+                            child: Icon(
+                              Icons.error,
+                              color: Color(0xff394452),
+                            ),
+                          ),
+                          Text(
+                            'Please fill the Password',
+                            style: GoogleFonts.sourceSansPro(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff394452)),
+                          ),
+                        ],
+                      ),
+                      padding: EdgeInsets.only(top: 6, bottom: 6, left: 36),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          color: Color(0xffEBEEF2)),
+                    ),
+                  )
+                : SizedBox.shrink(),
             Padding(
               padding: const EdgeInsets.only(left: 48, top: 22),
               child: Row(
@@ -173,9 +244,23 @@ class _SignUpPageState extends State<SignUpPage> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: InkWell(
                 onTap: () {
-                  setState(() {});
+                  if (email.text.isEmpty) {
+                    isEmailEmpty = true;
+                    setState(() {});
+                  } else if (password.text.isEmpty) {
+                    isPasswordEmpty = true;
+                    setState(() {});
+                  } else if (email.text.isNotEmpty &&
+                      password.text.isNotEmpty) {
+                    isEmailEmpty = false;
+                    isPasswordEmpty = false;
+                    setState(() {});
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: ((context) => FillBioPage())));
+                  }
                 },
-                child: Container(
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 150),
                   padding: EdgeInsets.symmetric(vertical: 14, horizontal: 161),
                   decoration: BoxDecoration(
                     color: email.text.isEmpty || password.text.isEmpty
