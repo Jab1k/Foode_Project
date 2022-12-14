@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import 'payment_method.dart';
+
 class FillBioPage extends StatefulWidget {
   const FillBioPage({super.key});
 
@@ -529,19 +531,13 @@ class _FillBioPageState extends State<FillBioPage> {
                     } else if (address.text.isEmpty) {
                       isAddressEmpty = true;
                       setState(() {});
-                    } else if (fullname.text.isNotEmpty) {
-                      isFullNameEmpty = false;
-
-                      setState(() {});
-                    } else if (nickname.text.isNotEmpty) {
-                      isNickNameEmpty = false;
-                      setState(() {});
-                    } else if (phonenumber.text.isNotEmpty) {
-                      isPhoneNumberEmpty = false;
-                      setState(() {});
-                    } else if (address.text.isNotEmpty) {
-                      isAddressEmpty = false;
-                      setState(() {});
+                    }
+                    if (fullname.text.isNotEmpty &&
+                        nickname.text.isNotEmpty &&
+                        phonenumber.text.isNotEmpty &&
+                        address.text.isNotEmpty) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => PaymentMethodPage())));
                     }
                   },
                   child: AnimatedContainer(
