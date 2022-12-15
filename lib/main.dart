@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'pages/splash_screen1.dart';
+import 'Auth/splash_screen1.dart';
+
 
 void main() {
   runApp(const MyApp());
