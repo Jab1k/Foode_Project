@@ -68,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
               padding: const EdgeInsets.only(top: 8, left: 24, right: 24),
               child: TextFormField(
                 onChanged: (value) {
-                  bool isEmailEmpty = false;
+                  isEmailEmpty = false;
                   setState(() {});
                 },
                 controller: email,
@@ -180,7 +180,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             : Icons.visibility_off))),
               ),
             ),
-            isEmailEmpty
+            isPasswordEmpty
                 ? Padding(
                     padding: const EdgeInsets.only(left: 24, top: 8, right: 24),
                     child: Container(
@@ -246,18 +246,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 onTap: () {
                   if (email.text.isEmpty) {
                     isEmailEmpty = true;
-                    setState(() {});
                   } else if (password.text.isEmpty) {
                     isPasswordEmpty = true;
-                    setState(() {});
                   } else if (email.text.isNotEmpty &&
                       password.text.isNotEmpty) {
-                    isEmailEmpty = false;
-                    isPasswordEmpty = false;
-                    setState(() {});
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: ((context) => FillBioPage())));
                   }
+                  setState(() {});
                 },
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 150),

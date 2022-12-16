@@ -73,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
               padding: const EdgeInsets.only(top: 8, left: 24, right: 24),
               child: TextFormField(
                 onChanged: (value) {
-                  bool isEmailEmpty = false;
+                  isEmailEmpty = false;
                   setState(() {});
                 },
                 controller: email,
@@ -155,7 +155,7 @@ class _SignInPageState extends State<SignInPage> {
                   setState(() {});
                 },
                 controller: password,
-                obscureText: visibilityOfpasswor,
+                obscureText: !visibilityOfpasswor,
                 obscuringCharacter: '*',
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
@@ -185,7 +185,7 @@ class _SignInPageState extends State<SignInPage> {
                             : Icons.visibility_off))),
               ),
             ),
-            isEmailEmpty
+            isPasswordEmpty
                 ? Padding(
                     padding: const EdgeInsets.only(left: 24, top: 8, right: 24),
                     child: Container(
@@ -251,18 +251,10 @@ class _SignInPageState extends State<SignInPage> {
                 onTap: () {
                   if (email.text.isEmpty) {
                     isEmailEmpty = true;
-                    setState(() {});
                   } else if (password.text.isEmpty) {
                     isPasswordEmpty = true;
-                    setState(() {});
-                  } else if (email.text.isNotEmpty) {
-                    isEmailEmpty = false;
-
-                    setState(() {});
-                  } else if (password.text.isNotEmpty) {
-                    isPasswordEmpty = false;
-                    setState(() {});
                   }
+                  setState(() {});
                 },
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 400),

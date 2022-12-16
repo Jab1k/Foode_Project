@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/Auth/sign_in_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../Auth/sign_in_page.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
