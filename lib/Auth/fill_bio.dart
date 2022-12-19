@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:food_delivery/Model/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -537,10 +540,24 @@ class _FillBioPageState extends State<FillBioPage> {
                         nickname.text.isNotEmpty &&
                         phonenumber.text.isNotEmpty &&
                         address.text.isNotEmpty) {
-                      SharedPreferences _store =
+                      UserModel user = UserModel(
+                          Adress: address.text,
+                          fullName: fullname.text,
+                          nickName: nickname.text,
+                          phoneNumber: phonenumber.text, image: '');
+
+                      SharedPreferences local =
                           await SharedPreferences.getInstance();
-                      _store.setString('nickname', nickname.text);
-                      
+                      local.setString('user', jsonEncode(user.toJson()));
+
+                      String userLocal = local.getString('user') ?? '';
+                      UserModel newUser =
+                          UserModel.fromJson(jsonDecode(userLocal));
+
+                      // SharedPreferences _store =
+                      //     await SharedPreferences.getInstance();
+                      // _store.setString('nickname', nickname.text);
+
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: ((context) => PaymentMethodPage())));
                     }

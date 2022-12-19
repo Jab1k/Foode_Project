@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/Model/user_model.dart';
+import 'package:food_delivery/store/local_store.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -277,9 +279,17 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
             GestureDetector(
                 onTap: () async {
                   if (imagePath.isNotEmpty) {
-                    SharedPreferences _local =
-                        await SharedPreferences.getInstance();
-                    _local.setString('image', imagePath);
+                    LocalStore locall = LocalStore();
+                    UserModel newuser = await locall.getUser();
+                    UserModel user = UserModel(
+                        Adress: newuser.Adress,
+                        fullName: newuser.fullName,
+                        image: imagePath,
+                        nickName: newuser.nickName,
+                        phoneNumber: newuser.phoneNumber);
+
+                    locall.setUser(user);
+
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: ((context) => CongratsPage())));
                   }

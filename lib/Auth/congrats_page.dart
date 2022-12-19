@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery/pages/general_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../pages/home_page.dart';
@@ -54,7 +55,7 @@ class CongratsPage extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: ((context) => HomePage())));
+                      MaterialPageRoute(builder: ((context) => GeneralPage())));
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 14, horizontal: 134),

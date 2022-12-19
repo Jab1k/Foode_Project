@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/Model/user_model.dart';
+import 'package:food_delivery/pages/general_page.dart';
 import 'package:food_delivery/pages/home_page.dart';
+import 'package:food_delivery/store/local_store.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,16 +22,20 @@ class _SplashScreen1State extends State<SplashScreen1> {
     isLoading = true;
     Future.delayed(Duration(seconds: 3), () async {
       isLoading = false;
-      SharedPreferences _store = await SharedPreferences.getInstance();
-      String name = _store.getString('nickname') ?? '';
-      if(name.isEmpty){
+
+      LocalStore local = LocalStore();
+      UserModel user = await local.getUser();
+      
+      //  SharedPreferences _store = await SharedPreferences.getInstance();
+      // String name = _store.getString('nickname') ?? '';
+
+      if (user.nickName.isEmpty) {
         Navigator.of(context)
-          .push(MaterialPageRoute(builder: ((context) => OnBoardingPage())));
-      }else{
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: ((context) => HomePage())));
+            .push(MaterialPageRoute(builder: ((context) => OnBoardingPage())));
+      } else {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: ((context) => GeneralPage())));
       }
-     
     });
     super.initState();
   }

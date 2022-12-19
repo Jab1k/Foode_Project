@@ -4,19 +4,36 @@ import 'package:flutter_svg/svg.dart';
 
 class SpecialDeal {
   final String food;
-  LinearGradient color,buttonColor;
+  LinearGradient color, buttonColor;
 
-  SpecialDeal({required this.food, required this.color,required this.buttonColor});
+  SpecialDeal(
+      {required this.food, required this.color, required this.buttonColor});
 }
 
 class PopularRes {
   final SvgPicture icon;
   final String name, time;
 
-  PopularRes({required this.icon,required this.name,required this.time});
+  PopularRes({required this.icon, required this.name, required this.time});
 }
 
+class Menu {
+  final String image, name, title, price;
 
+  Menu(
+      {required this.image,
+      required this.name,
+      required this.title,
+      required this.price});
+}
+
+List<Menu> PopMenu = [
+  Menu(image: 'assets/image/salad1.jpg', name: 'Original Salad', title: 'Lovy Food', price: '\$8'),
+  Menu(image: 'assets/image/salad2.jpg', name: 'Fresh Salad', title: 'Cloudy Resto', price: '\$10'),
+  Menu(image: 'assets/image/icecream.jpg', name: 'Yummie Ice Cream', title: 'Circlo Resto', price: '\$6'),
+  Menu(image: 'assets/image/vegan.jpg', name: 'Vegan Special', title: 'Haty Food', price: '\$11'),
+  Menu(image: 'assets/image/lagman.jpg', name: 'Mixed Pasta', title: 'Recto Food', price: '\$13'),
+];
 
 List<PopularRes> restaurant = [
   PopularRes(
@@ -75,33 +92,32 @@ List<PopularRes> restaurant = [
       time: '15 mins'),
 ];
 
-
 List<SpecialDeal> aksiya = [
-    SpecialDeal(
-        food: 'assets/image/burger.png',
-        color: LinearGradient(
-          colors: [Color(0xffFF1843), Color(0xffFF7E95)],
-          begin: Alignment.bottomRight,
-          end: Alignment.bottomLeft,
-        ),
-        buttonColor:
-            LinearGradient(colors: [Color(0xffFFB800), Color(0xffFFB800)])),
-    SpecialDeal(
-        food: 'assets/image/pizza.png',
-        color: LinearGradient(
-          colors: [Color(0xffFFB800), Color(0xffFFDA7B)],
-          begin: Alignment.bottomRight,
-          end: Alignment.bottomLeft,
-        ),
-        buttonColor:
-            LinearGradient(colors: [Color(0xffFF1843), Color(0xffFF7E95)])),
-    SpecialDeal(
-        food: 'assets/image/kebab.png',
-        color: LinearGradient(
-          colors: [Color(0xff1EC87B), Color(0xff10EB89)],
-          begin: Alignment.bottomRight,
-          end: Alignment.bottomLeft,
-        ),
-        buttonColor:
-            LinearGradient(colors: [Color(0xffFFB800), Color(0xffFFB800)])),
-  ];
+  SpecialDeal(
+      food: 'assets/image/burger.png',
+      color: LinearGradient(
+        colors: [Color(0xffFF1843), Color(0xffFF7E95)],
+        begin: Alignment.bottomRight,
+        end: Alignment.bottomLeft,
+      ),
+      buttonColor:
+          LinearGradient(colors: [Color(0xffFFB800), Color(0xffFFB800)])),
+  SpecialDeal(
+      food: 'assets/image/pizza.png',
+      color: LinearGradient(
+        colors: [Color(0xffFFB800), Color(0xffFFDA7B)],
+        begin: Alignment.bottomRight,
+        end: Alignment.bottomLeft,
+      ),
+      buttonColor:
+          LinearGradient(colors: [Color(0xffFF1843), Color(0xffFF7E95)])),
+  SpecialDeal(
+      food: 'assets/image/kebab.png',
+      color: LinearGradient(
+        colors: [Color(0xff1EC87B), Color(0xff10EB89)],
+        begin: Alignment.bottomRight,
+        end: Alignment.bottomLeft,
+      ),
+      buttonColor:
+          LinearGradient(colors: [Color(0xffFFB800), Color(0xffFFB800)])),
+];

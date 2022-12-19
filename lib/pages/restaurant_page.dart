@@ -12,6 +12,10 @@ class PopularRestaurantPage extends StatefulWidget {
   State<PopularRestaurantPage> createState() => _PopularRestaurantPageState();
 }
 
+ bool isSeraching = false;
+
+  List searchingDatas = [];
+
 int currentIndex = 0;
 
 class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
@@ -65,7 +69,6 @@ class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
         body: SafeArea(
           child: Expanded(
             child: Column(
-            
               children: [
                 Row(
                   children: [
@@ -81,10 +84,9 @@ class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 8.18, vertical: 8.18),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(9.82)),
-                                  color:
-                                      Color.fromARGB(255, 234, 175, 194)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(9.82)),
+                                  color: Color.fromARGB(255, 234, 175, 194)),
                               child: Icon(
                                 Icons.arrow_back_ios,
                                 color: Color(0xffF43F5E),
@@ -96,8 +98,7 @@ class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
                             child: Text(
                               'Popular Restaurant',
                               style: GoogleFonts.sourceSansPro(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.w600),
+                                  fontSize: 26, fontWeight: FontWeight.w600),
                             ),
                           )
                         ],
@@ -131,14 +132,14 @@ class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
                                   borderSide: BorderSide(
                                     color: Color(0xffF4F6F9),
                                   ),
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(100))),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(100))),
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xffF4F6F9),
                                   ),
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(100)))),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(100)))),
                         ),
                       ),
                     ),
@@ -147,8 +148,7 @@ class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
                       width: 50,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(12)),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
                           color: Color(0xffF43F5E).withOpacity(0.1)),
                       child: Icon(
                         Icons.filter_list,
@@ -159,15 +159,12 @@ class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
                 ),
                 Expanded(
                   child: GridView.builder(
-                   
-                      padding:
-                          EdgeInsets.only(top: 32, left: 24, right: 24),
+                      padding: EdgeInsets.only(top: 32, left: 24, right: 24),
                       scrollDirection: Axis.vertical,
-                      gridDelegate:
-                          SliverGridDelegateWithFixedCrossAxisCount(
-                              mainAxisSpacing: 32,
-                              crossAxisSpacing: 24,
-                              crossAxisCount: 2),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          mainAxisSpacing: 32,
+                          crossAxisSpacing: 24,
+                          crossAxisCount: 2),
                       itemCount: restaurant.length,
                       itemBuilder: ((context, index) => Container(
                             width: 160.w,
@@ -177,8 +174,8 @@ class _PopularRestaurantPageState extends State<PopularRestaurantPage> {
                                   BoxShadow(
                                       blurRadius: 50,
                                       offset: Offset(0, 6),
-                                      color: Color(0xff5A6CEA)
-                                          .withOpacity(0.08))
+                                      color:
+                                          Color(0xff5A6CEA).withOpacity(0.08))
                                 ],
                                 color: Colors.white,
                                 borderRadius:

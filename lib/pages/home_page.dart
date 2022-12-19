@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery/Model/home_page_model.dart';
+import 'package:food_delivery/pages/popular_menu.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'menu.dart';
 import 'restaurant_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,45 +44,6 @@ class _HomePageState extends State<HomePage> {
             image:
                 DecorationImage(image: AssetImage('assets/image/Group.png'))),
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.transparent,
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.all(.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12.r)),
-              child: BottomNavyBar(
-                  selectedIndex: currentIndex,
-                  showElevation: true,
-                  backgroundColor: Colors.white,
-                  containerHeight: 91,
-                  itemCornerRadius: 24,
-                  curve: Curves.decelerate,
-                  items: [
-                    BottomNavyBarItem(
-                        icon: Icon(Icons.home),
-                        title: Text('Home'),
-                        activeColor: Color(0xffFF1843)),
-                    BottomNavyBarItem(
-                        icon: Icon(Icons.shopping_basket),
-                        title: Text('Order'),
-                        activeColor: Color(0xffFF1843)),
-                    BottomNavyBarItem(
-                        icon: Icon(Icons.message),
-                        title: Text('Chat'),
-                        activeColor: Color(0xffFF1843)),
-                    BottomNavyBarItem(
-                      icon: Icon(Icons.person),
-                      title: Text('Profile'),
-                      activeColor: Color(0xffFF1843),
-                    )
-                  ],
-                  onItemSelected: ((value) => setState(() {
-                        currentIndex = value;
-                      }))),
-            ),
-          ),
           body: SafeArea(
             child: SizedBox(
               height: MediaQuery.of(context).size.height,
@@ -302,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                                 padding: EdgeInsets.only(
                                     bottom: 32, top: 32, left: 24),
                                 scrollDirection: Axis.horizontal,
-                                itemCount: restaurant.length,
+                                itemCount: 3,
                                 itemBuilder: ((context, index) => Container(
                                       margin: EdgeInsets.only(left: 10.w),
                                       width: 160.w,
@@ -363,7 +324,7 @@ class _HomePageState extends State<HomePage> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: ((context) =>
-                                                PopularMenuPage())));
+                                                PopMenuPage())));
                                   },
                                   child: Text(
                                     'See all',
@@ -378,14 +339,22 @@ class _HomePageState extends State<HomePage> {
                           ),
                           ListView.builder(
                               shrinkWrap: true,
-                              padding: EdgeInsets.only(top: 32),
+                              padding:
+                                  EdgeInsets.only(top: 32, left: 24, right: 24),
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: 1,
+                              itemCount: 3,
                               itemBuilder: ((context, index) => Container(
                                     margin: EdgeInsets.only(bottom: 30),
                                     height: 88.h,
                                     width: 380.w,
                                     decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              blurRadius: 50,
+                                              offset: Offset(0, 6),
+                                              color: Color(0xff5A6CEA)
+                                                  .withOpacity(0.08))
+                                        ],
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(16)),
                                         color: Colors.white),
@@ -394,29 +363,68 @@ class _HomePageState extends State<HomePage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         12.horizontalSpace,
-                                        Container(
-                                          height: 64.h,
-                                          width: 64.w,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12)),
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      'assets/image/salad1.jpg'),
-                                                  fit: BoxFit.cover)),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Container(
+                                            height: 64.h,
+                                            width: 64.w,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(12)),
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        PopMenu[index].image),
+                                                    fit: BoxFit.cover)),
+                                          ),
                                         ),
                                         20.horizontalSpace,
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 18),
-                                          child: Text(
-                                            'Original Salad',
-                                            style: GoogleFonts.sourceSansPro(
-                                                fontSize: 18.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 5),
+                                                child: Text(
+                                                  PopMenu[index].name,
+                                                  style:
+                                                      GoogleFonts.sourceSansPro(
+                                                          fontSize: 18.sp,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.black),
+                                                ),
+                                              ),
+                                              4.verticalSpace,
+                                              Text(
+                                                PopMenu[index].title,
+                                                style:
+                                                    GoogleFonts.sourceSansPro(
+                                                        fontSize: 14.sp,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color:
+                                                            Color(0xff858C94)),
+                                              )
+                                            ],
                                           ),
                                         ),
+                                        Spacer(),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 32, top: 22),
+                                          child: Text(
+                                            PopMenu[index].price,
+                                            style: GoogleFonts.sourceSansPro(
+                                                fontSize: 29.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xffF43F5E)),
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ))),
